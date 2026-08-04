@@ -1,0 +1,7 @@
+GitFlow usa varias ramas de larga duración: main (producción), develop (integración), más ramas de feature/, release/ y hotfix/. Cada feature se desarrolla aparte y se integra a develop cuando está lista; los releases se preparan en su propia rama antes de llegar a main. Da mucho control y trazabilidad, pero implica más pasos y ramas viviendo en paralelo por más tiempo, lo que aumenta el riesgo de conflictos grandes al final.
+
+Trunk-Based Development trabaja casi todo directo sobre una sola rama principal (main/trunk), con ramas de feature muy cortas (horas o pocos días) que se integran seguido mediante PRs pequeños. Se apoya en feature flags para ocultar trabajo incompleto en producción. Es más simple, reduce conflictos porque los cambios se integran rápido, y encaja mejor con CI/CD continuo.
+
+Cuál usaría para una app web: trunk-based development. Para un proyecto como cuenta-clara, con un equipo chico y despliegues frecuentes, mantener ramas de develop/release separadas es carga extra sin beneficio real. Ramas cortas con PRs pequeños y revisión rápida permiten desplegar seguido y detectar errores antes, que es justo lo que un producto web en evolución constante necesita.
+
+**Ejemplo concreto:** en `cuenta-clara`, si quisiera agregar el módulo de reportes de margen por caja (fuera del MVP v1), con trunk-based lo desarrollaría en una rama corta `feature/reportes-margen`, la escondería detrás de un feature flag mientras no esté lista, y la integraría a `main` en cuanto pase la revisión — sin bloquear el resto del equipo ni esperar a un release grande.
